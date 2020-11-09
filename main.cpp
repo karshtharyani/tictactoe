@@ -52,6 +52,7 @@ bool isAllOccupied(const Board &board) {
   }
   return true;
 }
+
 GameState isGameOver(const Board &board) {
   if (hasStateWon(board, cross)) {
     return crossWon;
