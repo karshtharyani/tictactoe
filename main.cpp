@@ -14,13 +14,13 @@ enum GameState { crossWon, zeroWon, tie, inProgress, gameOver };
 typedef vector<vector<BoardState>> Board;
 
 bool isRowComplete(const Board &board, BoardState state, int row) {
-  for (int i = 0; i < BOARD_SIZE; i++)
+  for (unsigned int i = 0; i < BOARD_SIZE; i++)
     if (board[row][i] != state)
       return false;
   return true;
 }
 bool isColumnComplete(const Board &board, BoardState state, int column) {
-  for (int i = 0; i < BOARD_SIZE; i++)
+  for (unsigned int i = 0; i < BOARD_SIZE; i++)
     if (board[i][column] != state)
       return false;
   return true;
@@ -31,7 +31,7 @@ bool isDiagonalComplete(const Board &board, BoardState state) {
          (board[0][2] == state && board[1][1] == state && board[2][0] == state);
 }
 bool hasStateWon(const Board &board, BoardState state) {
-  for (int i = 0; i < BOARD_SIZE; i++) {
+  for (unsigned int i = 0; i < BOARD_SIZE; i++) {
     if (isRowComplete(board, state, i))
       return true;
     if (isColumnComplete(board, state, i))
@@ -115,24 +115,19 @@ bool player1Choice() {
   cout << "Player 1 as Cross(x)? [y/n] ";
   cout << "...\n";
   cin >> ch;
-  if (ch == 'y' || ch == 'Y') {
-    playAsCross = true;
-  } else if (ch == 'n' || ch == 'N') {
+  if (ch == 'n' || ch == 'N') {
     playAsCross = false;
   }
   return playAsCross;
 }
 
 int main() {
-  unsigned int player1Score = 0;
-  unsigned int player2Score = 0;
   GameState gameState = inProgress;
   Board board{
       {empty, empty, empty}, {empty, empty, empty}, {empty, empty, empty}};
   const int option = mainMenuOption();
   if (option) {
     const bool player1AsCross = player1Choice();
-    bool gameOver = false;
     std::cout << "Begin! \n";
     printBoard(board);
     while (true) {
