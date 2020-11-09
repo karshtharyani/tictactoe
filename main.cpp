@@ -14,24 +14,21 @@ enum GameState { crossWon, zeroWon, tie, inProgress, gameOver };
 typedef vector<vector<BoardState>> Board;
 
 bool isRowComplete(const Board &board, BoardState state, int row) {
-  bool rowIsComplete = true;
   for (int i = 0; i < BOARD_SIZE; i++) {
     if (board[row][i] != state) {
       rowIsComplete = false;
-      break;
+      return false;
     }
   }
-  return rowIsComplete;
+  return true;
 }
 bool isColumnComplete(const Board &board, BoardState state, int column) {
-  bool columnIsComplete = true;
   for (int i = 0; i < BOARD_SIZE; i++) {
     if (board[i][column] != state) {
-      columnIsComplete = false;
-      break;
+      return false;
     }
   }
-  return columnIsComplete;
+  return true;
 }
 bool isDiagonalComplete(const Board &board, BoardState state) {
   return (board[0][0] == state && board[1][1] == state &&
