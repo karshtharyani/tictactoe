@@ -3,13 +3,8 @@
 #include <iostream>
 #include <vector>
 namespace game {
-using std::cin;
-using std::cout;
 using std::vector;
 const unsigned int BOARD_SIZE = 3;
-const char CROSS = 'X';
-const char ZERO = 'O';
-const char EMPTY = '-';
 enum BoardState { cross, zero, empty };
 enum GameState { crossWon, zeroWon, tie, inProgress, gameOver };
 typedef vector<vector<BoardState>> Board;
@@ -66,32 +61,6 @@ GameState isGameOver(const Board &board) {
   return inProgress;
 }
 
-void playerMove(Board &board, BoardState state) {
-  bool isValidMove = false;
-  while (!isValidMove) {
-    int r = 0, c = 0;
-    cout << "Your move (r, c)";
-    cout << "...\n";
-    cout << "r: ";
-    cin >> r;
-    cout << "c: ";
-    cin >> c;
-    if (board[r][c] == empty) {
-      board[r][c] = state;
-      isValidMove = true;
-    } else {
-      cout << "The board is occupied there \n";
-    }
-  }
-}
-
-bool player1Choice() {
-  char ch = 'y';
-  cout << "Player 1 as Cross(" << CROSS << ")? (y/n) [y]";
-  cout << "...\n";
-  cin >> ch;
-  return !(ch == 'n' || ch == 'N');
-}
 } // namespace game
 #endif
 
