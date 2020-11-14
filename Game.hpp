@@ -85,20 +85,6 @@ void playerMove(Board &board, BoardState state) {
   }
 }
 
-void printBoard(const Board &board) {
-  for (const auto &row : board) {
-    for (const auto &state : row) {
-      if (state == cross)
-        cout << CROSS << '\t';
-      else if (state == zero)
-        cout << ZERO << '\t';
-      else if (state == empty)
-        cout << EMPTY << '\t';
-    }
-    cout << "\n";
-  }
-}
-
 int mainMenuOption() {
   int option = 0;
   cout << "Welcome to tic tac toe\n";
