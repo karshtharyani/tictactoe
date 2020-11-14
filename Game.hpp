@@ -1,10 +1,11 @@
+#ifndef GAME_H
+#define GAME_H
 #include <iostream>
 #include <vector>
-
+namespace game {
 using std::cin;
 using std::cout;
 using std::vector;
-
 const unsigned int BOARD_SIZE = 3;
 const char CROSS = 'X';
 const char ZERO = 'O';
@@ -111,48 +112,11 @@ int mainMenuOption() {
 
 bool player1Choice() {
   char ch = 'y';
-  cout << "Player 1 as Cross(" << CROSS << "? [y/n] ";
+  cout << "Player 1 as Cross(" << CROSS << ")? (y/n) [y]";
   cout << "...\n";
   cin >> ch;
   return !(ch == 'n' || ch == 'N');
 }
+} // namespace game
+#endif
 
-int main() {
-  GameState gameState = inProgress;
-  Board board{
-      {empty, empty, empty}, {empty, empty, empty}, {empty, empty, empty}};
-  const int option = mainMenuOption();
-  if (option) {
-    const bool player1AsCross = player1Choice();
-    std::cout << "Begin! \n";
-    printBoard(board);
-    while (true) {
-      playerMove(board, cross);
-      printBoard(board);
-      gameState = isGameOver(board);
-      if (gameState != inProgress)
-        break;
-      playerMove(board, zero);
-      printBoard(board);
-      gameState = isGameOver(board);
-      if (gameState != inProgress)
-        break;
-    }
-    if (gameState == crossWon) {
-      cout << "Cross won!";
-      if (player1AsCross)
-        cout << "Player 1 won!\n";
-      else
-        cout << "Player 2 won!\n";
-    } else if (gameState == zeroWon) {
-      cout << "Zero won!";
-      if (player1AsCross)
-        cout << "Player 2 won!\n";
-      else
-        cout << "Player 1 won!\n";
-    } else if (gameState == tie) {
-      cout << "It's a tie!";
-    }
-  }
-  return 0;
-}
