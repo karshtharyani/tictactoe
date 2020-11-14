@@ -85,17 +85,6 @@ void playerMove(Board &board, BoardState state) {
   }
 }
 
-int mainMenuOption() {
-  int option = 0;
-  cout << "Welcome to tic tac toe\n";
-  cout << "MENU:\n";
-  cout << "1: New Game\n";
-  cout << "0: Exit\n";
-  cout << "...\n";
-  cin >> option;
-  return option;
-}
-
 bool player1Choice() {
   char ch = 'y';
   cout << "Player 1 as Cross(" << CROSS << ")? (y/n) [y]";
